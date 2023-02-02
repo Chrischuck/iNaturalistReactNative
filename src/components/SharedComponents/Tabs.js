@@ -5,7 +5,7 @@ import { t } from "i18next";
 import type { Node } from "react";
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import colors from "styles/tailwindColors";
+import classnames from 'classnames'
 
 type Tab = {
   id: string,
@@ -30,7 +30,7 @@ const Tabs = ( { tabs = DEFAULT_TABS, activeId }: Props ): Node => (
         id, text, onPress, testID
       } ) => {
         const active = activeId === id;
-        const borderClass = `${active ? "bg-primary" : "bg-white"} h-1 rounded-t-lg`;
+
         return (
           <View key={id} className="flex-1">
             <TouchableOpacity
@@ -49,12 +49,17 @@ const Tabs = ( { tabs = DEFAULT_TABS, activeId }: Props ): Node => (
               }}
             >
               <Text
-                className="text-xl self-center py-2"
-                style={{ color: active ? colors.focus : colors.grayText }}
+                className={classnames("text-xl self-center py-2", {
+                  'text-focus': active,
+                  'text-grayText': !active,
+                })}
               >
                 {text}
               </Text>
-              <View className={borderClass} />
+              <View className={classnames('h-1 rounded-t-lg', { 
+                "bg-inatGreen": active,
+                "bg-white": !active
+              })} />
             </TouchableOpacity>
           </View>
         );
