@@ -1,11 +1,11 @@
 // @flow
 
+import classnames from "classnames";
 import { Text, View } from "components/styledComponents";
 import { t } from "i18next";
 import type { Node } from "react";
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import classnames from 'classnames'
 
 type Tab = {
   id: string,
@@ -49,17 +49,18 @@ const Tabs = ( { tabs = DEFAULT_TABS, activeId }: Props ): Node => (
               }}
             >
               <Text
-                className={classnames("text-xl self-center py-2", {
-                  'text-focus': active,
-                  'text-grayText': !active,
-                })}
+                className={classnames( "text-xl self-center py-2", {
+                  "text-focus": active,
+                  "text-grayText": !active
+                } )}
               >
                 {text}
               </Text>
-              <View className={classnames('h-1 rounded-t-lg', { 
+              <View className={classnames( "h-1 rounded-t-lg", {
                 "bg-inatGreen": active,
                 "bg-white": !active
-              })} />
+              } )}
+              />
             </TouchableOpacity>
           </View>
         );
